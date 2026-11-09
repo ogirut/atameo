@@ -53,6 +53,9 @@
   }
   .btn:hover,.btn.solid{background:var(--paper);color:var(--ink)}
   .btn.solid:hover{background:transparent;color:var(--paper)}
+  .btn.off{opacity:.45;cursor:default;border-style:dashed}
+  .btn.off:hover{background:transparent;color:var(--paper)}
+  #about{scroll-margin-top:20px}
 
   /* header */
   header{
@@ -195,8 +198,10 @@
       <div class="btns">
         <a class="btn solid" href="https://atameo.bandcamp.com" target="_blank" rel="noopener">bandcamp</a>
         <a class="btn" href="https://www.instagram.com/atameoband" target="_blank" rel="noopener">instagram</a>
-        <a class="btn" href="#media">watch live</a>
-        <a class="btn" href="#contact">booking</a>
+        <a class="btn" href="#media" data-tab="tab-images">gallery</a>
+        <a class="btn" href="#records">releases</a>
+        <a class="btn" href="#about">about</a>
+        <a class="btn" href="#contact">contact</a>
       </div>
     </div>
   </section>
@@ -225,7 +230,7 @@
           <h2>it sure is sad to hope for the best while expecting the worst</h2>
           <div class="btns">
             <a class="btn solid" href="https://atameo.bandcamp.com/album/it-sure-is-sad-to-hope-for-the-best-while-expecting-the-worst" target="_blank" rel="noopener">listen / buy</a>
-            <a class="btn" href="https://zegemabeachrecords.com/search?q=atameo" target="_blank" rel="noopener">vinyl</a>
+            <span class="btn off" aria-disabled="true">vinyl: sold out</span>
           </div>
           <ol class="tracks">
             <li><span>it's not real</span><span>2:15</span></li>
@@ -336,7 +341,7 @@
 
   <section id="contact" style="border-top:1px solid var(--line)">
     <div class="wrap about">
-      <div>
+      <div id="about">
         <p class="label">about</p>
         <p>atameo is a four-piece screamo and emoviolence band: short, violent songs that break open into long, quiet ones. The debut LP came out in 2022 on Zegema Beach Records and Middle-Man Records, and in 2025 the band toured Europe.</p>
         <div class="members"><span>Ziv</span><span>Tzahi</span><span>Ori</span><span>Itay</span></div>
@@ -344,9 +349,10 @@
       <div class="contact">
         <p class="label">contact</p>
         <h2>shows, press, distro</h2>
-        <p>Message us on Instagram or through Bandcamp.</p>
+        <p>Email <a href="mailto:atameoband@gmail.com">atameoband@gmail.com</a> or message us on Instagram.</p>
         <div class="btns">
-          <a class="btn solid" href="https://www.instagram.com/atameoband" target="_blank" rel="noopener">instagram</a>
+          <a class="btn solid" href="mailto:atameoband@gmail.com">email</a>
+          <a class="btn" href="https://www.instagram.com/atameoband" target="_blank" rel="noopener">instagram</a>
           <a class="btn" href="https://atameo.bandcamp.com/contact?b=1229797333&n=atameo" target="_blank" rel="noopener">bandcamp</a>
           <a class="btn" href="https://www.facebook.com/atameoband" target="_blank" rel="noopener">facebook</a>
         </div>
@@ -363,6 +369,9 @@
 </footer>
 
 <script>
+  // buttons that open a specific media tab (e.g. hero "gallery")
+  document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{const t=document.getElementById(b.dataset.tab); if(t) t.click();}));
+
   // tabs
   const tabs = [...document.querySelectorAll('[role="tab"]')];
   function select(t){
