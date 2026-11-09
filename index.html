@@ -74,8 +74,9 @@
   }
   .hero img.bg{
     position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 45%;
-    z-index:-2;filter:contrast(1.08) brightness(.6) saturate(.9);
+    z-index:-2;filter:grayscale(1) contrast(1.1) brightness(.6);transition:filter .6s;
   }
+  .hero:hover img.bg{filter:contrast(1.05) brightness(.6)}
   .hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
     background:linear-gradient(180deg,rgba(12,12,11,.55) 0%,rgba(12,12,11,0) 30%,rgba(12,12,11,.25) 55%,var(--ink) 100%);
@@ -109,7 +110,7 @@
   .video iframe,.video button{position:absolute;inset:0;width:100%;height:100%;border:0}
   .video button{cursor:pointer;background:none;padding:0;color:var(--paper);font:inherit}
   .video button img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.7);transition:filter .3s}
-  .video button:hover img{filter:grayscale(.2) brightness(.85)}
+  .video button:hover img{filter:none}
   .video .play{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(22px,2.4vw,30px);font-style:italic}
   .video .play span{border:1px solid var(--paper);padding:10px 22px 8px;background:rgba(12,12,11,.45)}
   .live h3{font-weight:400;font-size:clamp(28px,3vw,38px);line-height:1.1}
@@ -128,8 +129,8 @@
   .vid figcaption{margin-top:10px;font-style:italic;opacity:.8;font-size:17px}
   .gallery{columns:3;column-gap:clamp(8px,1.2vw,14px)}
   .gallery a{display:block;overflow:hidden;background:var(--ink);break-inside:avoid;margin-bottom:clamp(8px,1.2vw,14px)}
-  .gallery img{width:100%;height:auto;transition:transform .6s}
-  .gallery a:hover img{transform:scale(1.03)}
+  .gallery img{width:100%;height:auto;filter:grayscale(1) contrast(1.05);transition:filter .4s,transform .6s}
+  .gallery a:hover img{filter:none;transform:scale(1.03)}
   dialog#lightbox{border:0;padding:0;background:transparent;max-width:94vw;max-height:92vh;margin:auto}
   dialog#lightbox::backdrop{background:rgba(8,8,7,.94)}
   dialog#lightbox img{max-width:94vw;max-height:88vh;width:auto;margin:auto}
