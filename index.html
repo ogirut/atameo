@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atameo</title>
+<meta name="description" content="atameo. screamo / emoviolence. Debut LP out on Zegema Beach Records and Middle-Man Records.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c0c0b;
+    --ink-2:#151514;
+    --paper:#ecebe6;
+    --line:#34342f;
+    --gutter:clamp(16px,4vw,48px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);color:var(--paper);
+    font-family:"IM Fell English",Georgia,serif;
+    font-size:19px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit}
+  ::selection{background:var(--paper);color:var(--ink)}
+
+  .grain{
+    position:fixed;inset:-50%;width:200%;height:200%;
+    pointer-events:none;z-index:100;opacity:.1;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:grain 1.2s steps(6) infinite;
+  }
+  @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}}
+  @media (prefers-reduced-motion:reduce){.grain{animation:none}}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+  section{padding:clamp(48px,6vw,80px) 0}
+  .label{
+    font-size:17px;letter-spacing:.22em;text-transform:lowercase;opacity:.75;
+    margin-bottom:22px;display:flex;align-items:center;gap:14px;
+  }
+  .label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{
+    display:inline-block;text-decoration:none;
+    border:1px solid var(--paper);padding:9px 18px 7px;font-size:18px;
+    transition:background .2s,color .2s;
+  }
+  .btn:hover,.btn.solid{background:var(--paper);color:var(--ink)}
+  .btn.solid:hover{background:transparent;color:var(--paper)}
+
+  /* header */
+  header{
+    position:absolute;top:0;left:0;right:0;z-index:20;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:16px var(--gutter);
+  }
+  header nav{display:flex;gap:clamp(14px,2.6vw,28px);flex-wrap:wrap}
+  header a{text-decoration:none}
+  header nav a{opacity:.85}
+  header nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+
+  /* hero: live photo */
+  .hero{
+    position:relative;min-height:min(88svh,820px);
+    display:flex;align-items:flex-end;
+    padding:110px 0 clamp(36px,5vw,60px);
+    isolation:isolate;overflow:hidden;
+  }
+  .hero img.bg{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 30%;
+    z-index:-2;filter:grayscale(1) contrast(1.15) brightness(.62);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(12,12,11,.55) 0%,rgba(12,12,11,0) 30%,rgba(12,12,11,.25) 55%,var(--ink) 100%);
+  }
+  .hero h1{font-weight:400;font-size:clamp(80px,15vw,220px);line-height:.85;letter-spacing:-.02em}
+  .hero .tag{font-size:clamp(19px,2vw,24px);font-style:italic;margin:14px 0 24px}
+  .hero .cap{position:absolute;right:var(--gutter);bottom:18px;font-size:16px;font-style:italic;opacity:.7}
+
+  /* press strip */
+  .press{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(32px,4vw,48px) 0}
+  .press .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+  .press blockquote{font-size:clamp(28px,3.4vw,44px);line-height:1.12;font-style:italic}
+  .press cite{display:block;margin-top:12px;font-style:normal;font-size:17px;letter-spacing:.12em;opacity:.75}
+  .facts{list-style:none;display:grid;gap:8px}
+  .facts li{display:flex;gap:12px}
+  .facts li::before{content:"/";opacity:.5}
+
+  /* release */
+  .release{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:start}
+  .release h2{font-weight:400;font-size:clamp(30px,3.4vw,44px);line-height:1.08;margin:4px 0 12px}
+  .meta{font-style:italic;opacity:.85}
+  .release .btns{margin:20px 0 24px}
+  ol.tracks{list-style:none;columns:2;column-gap:32px;font-size:18px}
+  ol.tracks li{break-inside:avoid;display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line)}
+  ol.tracks li span:last-child{opacity:.7;font-variant-numeric:tabular-nums}
+  .credits{margin-top:18px;font-size:17px;opacity:.8;font-style:italic}
+
+  /* live */
+  .live{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center}
+  .video{position:relative;aspect-ratio:16/9;background:var(--ink-2);border:1px solid var(--line)}
+  .video iframe,.video button{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video button{cursor:pointer;background:none;padding:0;color:var(--paper);font:inherit}
+  .video button img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.7);transition:filter .3s}
+  .video button:hover img{filter:grayscale(.2) brightness(.85)}
+  .video .play{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(22px,2.4vw,30px);font-style:italic}
+  .video .play span{border:1px solid var(--paper);padding:10px 22px 8px;background:rgba(12,12,11,.45)}
+  .live h3{font-weight:400;font-size:clamp(28px,3vw,38px);line-height:1.1}
+  .live p{margin-top:12px}
+
+  /* media tabs */
+  .tabs{display:flex;gap:clamp(18px,3vw,36px);border-bottom:1px solid var(--line);margin-bottom:26px}
+  .tabs button{
+    background:none;border:0;color:var(--paper);font:inherit;cursor:pointer;
+    font-size:clamp(28px,3.4vw,42px);line-height:1;padding:0 0 12px;opacity:.4;
+    border-bottom:2px solid transparent;margin-bottom:-1px;transition:opacity .2s;
+  }
+  .tabs button:hover{opacity:.75}
+  .tabs button[aria-selected="true"]{opacity:1;border-bottom-color:var(--paper)}
+  .vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:clamp(18px,2.4vw,28px)}
+  .vid figcaption{margin-top:10px;font-style:italic;opacity:.8;font-size:17px}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.2vw,14px)}
+  .gallery a{display:block;overflow:hidden;aspect-ratio:16/9;background:var(--ink)}
+  .gallery a.wide{grid-column:span 2;grid-row:span 3;aspect-ratio:auto}
+  .gallery img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:filter .4s,transform .6s}
+  .gallery a:hover img{filter:none;transform:scale(1.03)}
+  dialog#lightbox{border:0;padding:0;background:transparent;max-width:94vw;max-height:92vh;margin:auto}
+  dialog#lightbox::backdrop{background:rgba(8,8,7,.94)}
+  dialog#lightbox img{max-width:94vw;max-height:88vh;width:auto;margin:auto}
+  dialog#lightbox .close{position:fixed;top:12px;right:20px;background:none;border:0;color:var(--paper);font-size:44px;line-height:1;cursor:pointer}
+
+  /* records */
+  .disco{display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(12px,1.6vw,20px)}
+  .rec{text-decoration:none;display:block}
+  .rec .art{aspect-ratio:1;overflow:hidden;border:1px solid var(--line)}
+  .rec .art img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .rec:hover .art img{transform:scale(1.05)}
+  .rec h3{font-weight:400;font-size:17px;line-height:1.2;margin-top:10px}
+  .rec p{font-size:16px;opacity:.7;font-style:italic;line-height:1.3}
+
+  /* about + contact */
+  .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+  .about .members{font-size:clamp(28px,3vw,38px);display:flex;gap:6px 22px;flex-wrap:wrap;margin-top:18px;line-height:1.1}
+  .about .contact h2{font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1}
+  .about .contact p{margin:12px 0 20px}
+  .about .contact .btns + .btns{margin-top:10px}
+
+  footer{border-top:1px solid var(--line);padding:22px 0;font-size:16px;opacity:.75}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  @media (max-width:980px){
+    .disco{grid-template-columns:repeat(4,1fr)}
+  }
+  @media (max-width:820px){
+    .press .wrap,.release,.live,.about{grid-template-columns:1fr}
+    ol.tracks{columns:1}
+    .hero .cap{display:none}
+  }
+  @media (max-width:560px){
+    body{font-size:18px}
+    .disco{grid-template-columns:repeat(3,1fr)}
+    .rec h3{font-size:15px}.rec p{font-size:14px}
+    .gallery{grid-template-columns:repeat(3,1fr)}
+    .gallery a.wide{grid-column:span 3;grid-row:auto;aspect-ratio:16/9}
+    .release > a{max-width:340px}
+    header{flex-direction:column;align-items:flex-start;gap:2px}
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <a href="#top" style="font-size:24px">atameo</a>
+  <nav>
+    <a href="#music">music</a>
+    <a href="#media">media</a>
+    <a href="#records">records</a>
+    <a href="#contact">contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <img class="bg" src="img/live-leipzig.jpg" alt="atameo playing live: the bassist screams into the mic, the drummer behind a cymbal, flowers taped to a mic stand" width="1280" height="720">
+    <div class="wrap" style="width:100%">
+      <h1>atameo</h1>
+      <p class="tag">screamo / emoviolence</p>
+      <div class="btns">
+        <a class="btn solid" href="https://atameo.bandcamp.com" target="_blank" rel="noopener">bandcamp</a>
+        <a class="btn" href="https://open.spotify.com/artist/7c913bAXcNbdxX0cP35PeT" target="_blank" rel="noopener">spotify</a>
+        <a class="btn" href="https://music.apple.com/us/artist/atameo/1609247902" target="_blank" rel="noopener">apple music</a>
+        <a class="btn" href="https://www.instagram.com/atameoband" target="_blank" rel="noopener">instagram</a>
+      </div>
+    </div>
+    <span class="cap">live at Plaque, Leipzig, 2025</span>
+  </section>
+
+  <section class="press" aria-label="press">
+    <div class="wrap">
+      <blockquote>&ldquo;Every once in a while, an album comes along that's just skull-fracturingly good.&rdquo;
+        <cite>SOPHIE'S FLOORBOARD</cite></blockquote>
+      <ul class="facts">
+        <li>Debut LP on Zegema Beach Records and Middle-Man Records</li>
+        <li>Mixed by Jack Shirley, mastered by Steve Roche</li>
+        <li>Toured Europe in 2025</li>
+        <li><span><i>Lack</i>, a 4-way split with Letterbombs, Coma Regalia and Keratin</span></li>
+        <li>On Zegema Beach comps, including the Coma Regalia tribute</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="wrap">
+      <p class="label">debut LP</p>
+      <div class="release">
+        <a href="https://atameo.bandcamp.com/album/it-sure-is-sad-to-hope-for-the-best-while-expecting-the-worst" target="_blank" rel="noopener">
+          <img src="img/album.jpg" alt="Album cover: ink-wash portrait of a faceless figure on white paper" width="1200" height="1200">
+        </a>
+        <div>
+          <p class="meta">February 14, 2022 &middot; 12" / digital</p>
+          <h2>it sure is sad to hope for the best while expecting the worst</h2>
+          <div class="btns">
+            <a class="btn solid" href="https://atameo.bandcamp.com/album/it-sure-is-sad-to-hope-for-the-best-while-expecting-the-worst" target="_blank" rel="noopener">listen / buy</a>
+            <a class="btn" href="https://zegemabeachrecords.com/search?q=atameo" target="_blank" rel="noopener">vinyl</a>
+          </div>
+          <ol class="tracks">
+            <li><span>it's not real</span><span>2:15</span></li>
+            <li><span>it fills you with determination</span><span>1:28</span></li>
+            <li><span>versmold</span><span>2:11</span></li>
+            <li><span>marbles</span><span>2:07</span></li>
+            <li><span>hikikomori</span><span>8:42</span></li>
+            <li><span>bloom</span><span>2:24</span></li>
+            <li><span>why did you leave me behind? / now it's gone forever</span><span>5:19</span></li>
+          </ol>
+          <p class="credits">Recorded by Aviv Gozlan at N10 Facilities. Mixed by Jack Shirley. Mastered by Steve Roche. Art by Adi Ivry. Guest vocals on "bloom" by Nevo Sivan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="media" style="background:var(--ink-2)">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="media">
+        <button role="tab" id="tab-videos" aria-controls="panel-videos" aria-selected="true">videos</button>
+        <button role="tab" id="tab-images" aria-controls="panel-images" aria-selected="false" tabindex="-1">images</button>
+      </div>
+
+      <!-- VIDEOS: add more <figure class="vid"> blocks with a data-yt id -->
+      <div class="panel" role="tabpanel" id="panel-videos" aria-labelledby="tab-videos">
+        <div class="vids">
+          <figure class="vid" data-yt="4baFoAtHIng">
+            <div class="video">
+              <button type="button" aria-label="Play: live at Plaque, Leipzig, 2025">
+                <img src="img/live-guitar.jpg" alt="" loading="lazy">
+                <span class="play"><span>&#9654; play</span></span>
+              </button>
+            </div>
+            <figcaption>live at Plaque, Leipzig &middot; May 12, 2025</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- IMAGES: add more <a> blocks; the href is the full-size image -->
+      <div class="panel" role="tabpanel" id="panel-images" aria-labelledby="tab-images" hidden>
+        <div class="gallery">
+          <a href="img/live-leipzig.jpg" class="wide"><img src="img/live-leipzig.jpg" alt="atameo live in Leipzig, 2025: bassist and drummer" loading="lazy"></a>
+          <a href="img/live-guitar.jpg"><img src="img/live-guitar.jpg" alt="atameo live in Leipzig, 2025: guitarist, drummer behind" loading="lazy"></a>
+          <a href="img/live-guitar-2.jpg"><img src="img/live-guitar-2.jpg" alt="atameo live in Leipzig, 2025: guitarist smiling" loading="lazy"></a>
+          <a href="img/live-guitar-3.jpg"><img src="img/live-guitar-3.jpg" alt="atameo live in Leipzig, 2025: guitarist and drummer" loading="lazy"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="lightbox" aria-label="image viewer">
+    <button type="button" class="close" aria-label="close">&times;</button>
+    <img alt="">
+  </dialog>
+
+  <section id="records">
+    <div class="wrap">
+      <p class="label">records</p>
+      <div class="disco">
+        <a class="rec" href="https://music.apple.com/us/album/procrastination-blues-single/1715419190" target="_blank" rel="noopener">
+          <div class="art"><img src="img/procrastination.jpg" alt="" loading="lazy"></div>
+          <h3>Lack</h3><p>4-way split w/ Letterbombs, Coma Regalia, Keratin &middot; 2023</p></a>
+        <a class="rec" href="https://zegemabeachrecords.bandcamp.com/album/the-one-who-became-many" target="_blank" rel="noopener">
+          <div class="art"><img src="img/tribute.jpg" alt="" loading="lazy"></div>
+          <h3>The One Who Became Many</h3><p>Coma Regalia tribute &middot; 2023</p></a>
+        <a class="rec" href="https://atameo.bandcamp.com/album/it-sure-is-sad-to-hope-for-the-best-while-expecting-the-worst" target="_blank" rel="noopener">
+          <div class="art"><img src="img/album.jpg" alt="" loading="lazy"></div>
+          <h3>it sure is sad to hope for the best while expecting the worst</h3><p>LP &middot; 2022</p></a>
+        <a class="rec" href="https://zegemabeachrecords.bandcamp.com/album/zampler-18-ruin-your-life" target="_blank" rel="noopener">
+          <div class="art"><img src="img/zampler18.jpg" alt="" loading="lazy"></div>
+          <h3>Zampler #18</h3><p>comp &middot; 2021</p></a>
+        <a class="rec" href="https://music.apple.com/us/album/nothing-more-to-do-single/1610326930" target="_blank" rel="noopener">
+          <div class="art"><img src="img/nothing.jpg" alt="" loading="lazy"></div>
+          <h3>nothing more to do</h3><p>single &middot; 2021</p></a>
+        <a class="rec" href="https://atameo.bandcamp.com/track/never-to-be-funeral-diner-cover" target="_blank" rel="noopener">
+          <div class="art"><img src="img/never.jpg" alt="" loading="lazy"></div>
+          <h3>never to be</h3><p>Funeral Diner cover &middot; 2021</p></a>
+        <a class="rec" href="https://atameo.bandcamp.com/track/marbles" target="_blank" rel="noopener">
+          <div class="art"><img src="img/marbles.jpg" alt="" loading="lazy"></div>
+          <h3>marbles</h3><p>single &middot; 2020</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:1px solid var(--line)">
+    <div class="wrap about">
+      <div>
+        <p class="label">about</p>
+        <p>atameo is a four-piece screamo and emoviolence band: short, violent songs that break open into long, quiet ones. The debut LP came out in 2022 on Zegema Beach Records and Middle-Man Records, and in 2025 the band toured Europe.</p>
+        <div class="members"><span>Ziv</span><span>Tzahi</span><span>Ori</span><span>Itay</span></div>
+      </div>
+      <div class="contact">
+        <p class="label">contact</p>
+        <h2>shows, press, distro</h2>
+        <p>Message us on Instagram or through Bandcamp.</p>
+        <div class="btns">
+          <a class="btn solid" href="https://www.instagram.com/atameoband" target="_blank" rel="noopener">instagram</a>
+          <a class="btn" href="https://atameo.bandcamp.com/contact?b=1229797333&n=atameo" target="_blank" rel="noopener">bandcamp</a>
+          <a class="btn" href="https://www.facebook.com/atameoband" target="_blank" rel="noopener">facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 atameo</span>
+    <span>hope for the best. expect the worst.</span>
+  </div>
+</footer>
+
+<script>
+  // tabs
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  function select(t){
+    tabs.forEach(x=>{
+      const on = x===t;
+      x.setAttribute('aria-selected', on);
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((t,i)=>{
+    t.addEventListener('click',()=>select(t));
+    t.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        const n = tabs[(i + (e.key==='ArrowRight'?1:-1) + tabs.length) % tabs.length];
+        select(n); n.focus();
+      }
+    });
+  });
+
+  // videos: load YouTube only when clicked (keeps the page light)
+  document.querySelectorAll('.vid').forEach(v=>{
+    v.querySelector('button').addEventListener('click', function(){
+      const f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + v.dataset.yt + '?autoplay=1';
+      f.title = v.querySelector('figcaption').textContent;
+      f.allow = 'autoplay; encrypted-media; picture-in-picture';
+      f.allowFullscreen = true;
+      this.replaceWith(f);
+    });
+  });
+
+  // images: lightbox
+  const lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.gallery a').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      lbImg.src = a.getAttribute('href');
+      lbImg.alt = a.querySelector('img').alt;
+      lb.showModal();
+    });
+  });
+  lb.addEventListener('click',()=>lb.close());
+</script>
+</body>
+</html>
