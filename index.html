@@ -73,8 +73,8 @@
     isolation:isolate;overflow:hidden;
   }
   .hero img.bg{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;
-    z-index:-2;filter:grayscale(1) contrast(1.15) brightness(.62);
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 45%;
+    z-index:-2;filter:contrast(1.08) brightness(.6) saturate(.9);
   }
   .hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
@@ -128,8 +128,8 @@
   .vid figcaption{margin-top:10px;font-style:italic;opacity:.8;font-size:17px}
   .gallery{columns:3;column-gap:clamp(8px,1.2vw,14px)}
   .gallery a{display:block;overflow:hidden;background:var(--ink);break-inside:avoid;margin-bottom:clamp(8px,1.2vw,14px)}
-  .gallery img{width:100%;height:auto;filter:grayscale(1) contrast(1.1);transition:filter .4s,transform .6s}
-  .gallery a:hover img{filter:none;transform:scale(1.03)}
+  .gallery img{width:100%;height:auto;transition:transform .6s}
+  .gallery a:hover img{transform:scale(1.03)}
   dialog#lightbox{border:0;padding:0;background:transparent;max-width:94vw;max-height:92vh;margin:auto}
   dialog#lightbox::backdrop{background:rgba(8,8,7,.94)}
   dialog#lightbox img{max-width:94vw;max-height:88vh;width:auto;margin:auto}
@@ -188,7 +188,7 @@
 <main id="top">
 
   <section class="hero">
-    <img class="bg" src="img/band-red-stage.jpg" alt="atameo live: all four members on a red-lit stage" width="1800" height="1350">
+    <img class="bg" src="img/live-scream-1.jpg" alt="atameo live: the bassist screaming into the mic, light streaks across the room" width="2000" height="1333">
     <div class="wrap" style="width:100%">
       <h1>atameo</h1>
       <p class="tag">screamo / emoviolence</p>
@@ -290,14 +290,13 @@
       <!-- IMAGES: add more <a> blocks; the href is the full-size image -->
       <div class="panel" role="tabpanel" id="panel-images" aria-labelledby="tab-images" hidden>
         <div class="gallery">
-          <a href="img/band-red-stage.jpg"><img src="img/band-red-stage.jpg" alt="atameo on a red-lit stage, all four members playing" loading="lazy"></a>
-          <a href="img/vocals-bw.jpg"><img src="img/vocals-bw.jpg" alt="Black and white: screaming into the mic" loading="lazy"></a>
-          <a href="img/live-pink.jpg"><img src="img/live-pink.jpg" alt="Double-exposure live shot in pink light" loading="lazy"></a>
-          <a href="img/drums.jpg"><img src="img/drums.jpg" alt="The drummer mid-hit" loading="lazy"></a>
-          <a href="img/bass-bw.jpg"><img src="img/bass-bw.jpg" alt="Black and white: the bassist leaning into the mic" loading="lazy"></a>
-          <a href="img/live-smoke.jpg"><img src="img/live-smoke.jpg" alt="The full band through stage smoke and spotlights" loading="lazy"></a>
-          <a href="img/guitar-bw.jpg"><img src="img/guitar-bw.jpg" alt="Black and white: the guitarist playing" loading="lazy"></a>
-          <a href="img/tour-bumper-cars.jpg"><img src="img/tour-bumper-cars.jpg" alt="On tour: the band in bumper cars" loading="lazy"></a>
+          <a href="img/live-scream-1.jpg"><img src="img/live-scream-1.jpg" alt="Live: the bassist screaming into the mic, light streaks across the room" loading="lazy"></a>
+          <a href="img/drums-bw-3.jpg"><img src="img/drums-bw-3.jpg" alt="Black and white: the drum kit from beside the stage" loading="lazy"></a>
+          <a href="img/live-pink-2.jpg"><img src="img/live-pink-2.jpg" alt="Double-exposure live shot in pink and purple light" loading="lazy"></a>
+          <a href="img/guitar-bw-5.jpg"><img src="img/guitar-bw-5.jpg" alt="Black and white: hunched over the guitar in the spotlight" loading="lazy"></a>
+          <a href="img/stage-red-blue-4.jpg"><img src="img/stage-red-blue-4.jpg" alt="The band in silhouette under red and blue stage lights" loading="lazy"></a>
+          <a href="img/bass-bw-6.jpg"><img src="img/bass-bw-6.jpg" alt="Black and white: the bassist screaming, bass raised" loading="lazy"></a>
+          <a href="img/live-smoke-7.jpg"><img src="img/live-smoke-7.jpg" alt="The full band through stage smoke and spotlights" loading="lazy"></a>
         </div>
       </div>
     </div>
